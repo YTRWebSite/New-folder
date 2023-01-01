@@ -1,0 +1,3 @@
+{"user":"t","email":"","phone":"","password":"ttSS55fgvff","firstName":"c","lastName":"","userId":2}
+{"user":"u","email":"","phone":"","password":"AAAA123456bbbb","firstName":"kl","lastName":"","userId":2}
+{"user":"l","email":"i","phone":"i","password":"AAAAAffff66","firstName":"i","lastName":"i","userId":3}

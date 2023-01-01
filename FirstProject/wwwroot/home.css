@@ -1,0 +1,36 @@
+﻿body {
+    background-color:azure;
+    text-align:center;
+}
+#login {
+    width:300px;
+    height:300px;
+    margin-left:300px;
+    margin-top:50px;
+    border-block-color:black;
+    border-radius:10%;
+    background-color: gainsboro;
+    direction: rtl;
+    font-family:'Franklin Gothic Book';
+    font-size:larger;
+    font-weight:30px;
+    color:crimson;
+    border-color:black
+    
+}
+#newUser {
+    width: 300px;
+    height: 800px;
+    margin-left: 300px;
+    /*margin-top: 300px;*/
+    border-block-color: black;
+    border-radius: 10%;
+    background-color: gainsboro;
+    direction: rtl;
+    color: crimson;
+    font-family: 'Franklin Gothic Book';
+    font-size: larger;
+    font-weight: 30px;
+    border-color: black
+}
+
