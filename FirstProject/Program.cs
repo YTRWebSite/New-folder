@@ -4,7 +4,7 @@ using Service;
 using T_Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-//hello!
+//hello!//
 // Add services to the container.
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
