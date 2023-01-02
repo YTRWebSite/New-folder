@@ -1,6 +1,14 @@
-﻿window.addEventListener("click", GetProduct());
-window.addEventListener("click", GetCategory());
+﻿
+window.addEventListener("load", async (event) => {
+    let userobject = sessionStorage.getItem('cart')
+    const tmp = JSON.parse(userobject);
+    if (tmp == null) {
 
+    }
+    GetProduct();
+    GetCategory();
+    if()
+})
 
 
 async function GetProduct() {
@@ -15,7 +23,7 @@ function drawProducts(products) {
 }
 
 function drawProduct(product) {
-    var price = String(product.price);
+    var price = String(product.price)
     var tmp = document.getElementById("temp-card");
     var clon = tmp.content.cloneNode(true);
     clon.querySelector("h1").innerText = product.name;
@@ -34,6 +42,7 @@ const cart =[];
 var totalPrice = 0;
 console.log(totalPrice);
 function addToCart(product) {
+
     cart.push(product);
     totalPrice = totalPrice + product.price;
     sessionStorage.setItem("cart", JSON.stringify(cart));
@@ -68,7 +77,8 @@ drawCategory = (Category) => {
     var name = document.getElementById("nameSearch").value;
     var minPrice = document.getElementById("minPrice").value;
     var maxPrice = document.getElementById("maxPrice").value;
-    var categoryList = document.getElementsByClassName("opt");
+     var categoryList = document.getElementsByClassName("opt");
+   
     var start = 1;
     var limit = 20;
     var direction = "ASC";
