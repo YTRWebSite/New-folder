@@ -4,7 +4,7 @@ using Service;
 using T_Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-//hello!//
+
 // Add services to the container.
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -16,8 +16,8 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer("Server=SRV2\\PUPILS;Database=Products;Trusted_Connection=True;"));
-//builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer("Server=DESKTOP-LLM33R2;Database=Products;Trusted_Connection=True;"));
+//builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer("Server=SRV2\\PUPILS;Database=Products;Trusted_Connection=True;"));
+builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer("Server=DESKTOP-LLM33R2;Database=Products;Trusted_Connection=True;"));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

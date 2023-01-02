@@ -1,13 +1,12 @@
 ﻿
 window.addEventListener("load", async (event) => {
-    let userobject = sessionStorage.getItem('cart')
-    const tmp = JSON.parse(userobject);
-    if (tmp == null) {
-
+    let product = sessionStorage.getItem('cart')
+    const tmp = JSON.parse(product);
+    if (tmp != null) {
+        document.getElementById("ItemsCountText").innerText = tmp.length;
     }
     GetProduct();
     GetCategory();
-    if()
 })
 
 
@@ -32,9 +31,6 @@ function drawProduct(product) {
     clon.querySelector(".description").innerText = product.descreption;
     clon.querySelector("img").src = "./NewFolder/" + product.imgUrl;
 
-
-    //clon.querySelector("img").src = "/Img/" + product.imgUrl ;
-    //clon.getElementsByTagName("h1")[0].innerHtml = product.name;
     document.body.appendChild(clon);    
 }
 
@@ -64,13 +60,11 @@ function drawCategories(Categories) {
 }
 drawCategory = (Category) => {
 
-    /*  var count = String(Category.Id);*/
     var tmp = document.getElementById("temp-category");
     var clon = tmp.content.cloneNode(true);
     clon.querySelector(".opt").id = Category.name;
     clon.querySelector(".opt").value = Category.id;
     clon.querySelector(".OptionName").innerText = Category.name;
-    //clon.querySelector(".Count").innerText = count;
     document.getElementById("categoryList").appendChild(clon);
 }
  async function filterProducts() {

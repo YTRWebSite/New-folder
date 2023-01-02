@@ -21,13 +21,15 @@ function GetCart() {
 
 }
 
-function drawProductInCart(product,i) {
+ function getToptalPrice() {
     var totalPrice = sessionStorage.getItem("totalPrice");
     totalPricet = JSON.parse(totalPrice);
     var tprice = String(totalPricet);
-    console.log(tprice);
+    return tprice;
+}
+function drawProductInCart(product,i) {
+    const tprice =  getToptalPrice();
     document.getElementById("totalAmount").innerText = tprice;
-
     var tmp = document.getElementById("temp-row");
     var clon = tmp.content.cloneNode(true);
     clon.querySelector(".itemName").innerText = product.name;
@@ -36,11 +38,14 @@ function drawProductInCart(product,i) {
     clon.querySelector(".image").style.backgroundImage =`url(${"./NewFolder/" + product.imgUrl})` ;
     document.body.appendChild(clon);
 }
-function removeToCart(i) {
 
+function removeToCart(i) {
+    const tprice = getToptalPrice();
+    document.getElementById("totalAmount").innerText = tprice - cart[i].price;
+    sessionStorage.setItem("totalPrice", tprice - cart[i].price);
     cart.splice(i, 1);
     sessionStorage.setItem("cart", JSON.stringify(cart));
-   removeProductsInCart();
+    removeProductsInCart();
     GetCart();
 
 

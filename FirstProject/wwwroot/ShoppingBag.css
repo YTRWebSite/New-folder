@@ -64,12 +64,12 @@ td {
     text-indent: 0;
     width: 90px;
     padding-left: 10px;
-    background-image: url(/Images/icn-remove.png);
+    background-image: url(/NewFolder/icn-remove.png);
     height: 24px;
     background-position: left -3px;
     font-size: 11px !important;
     line-height: 15px;
-    position:relative;
+    position: relative;
 }
 
 .delete a {
