@@ -12,7 +12,7 @@ function GetCart() {
         for (let i = 0; i < cart.length; i++) {
             drawProductInCart(cart[i],i);
         }
-        /*cart.forEach(product => drawProductInCart(product))*/
+      
     }
     else {
         alert("הסל ריק");
@@ -27,6 +27,7 @@ function GetCart() {
     var tprice = String(totalPricet);
     return tprice;
 }
+
 function drawProductInCart(product,i) {
     const tprice =  getToptalPrice();
     document.getElementById("totalAmount").innerText = tprice;
@@ -60,32 +61,36 @@ function removeProductsInCart() {
 async function placeOrder() {
     let userobject = sessionStorage.getItem('details')
     const tmp = JSON.parse(userobject);
+    if (tmp == null) {
+        alert("you need login your details before you pay");
+        window.location.href = "home.html"
+    }
+    else {
     const id = tmp["id"];
-  
-    
-    const order = {
-        "Id":0,
-        "OrderDate": new Date(),
-        "OrderSum": sessionStorage.getItem("totalPrice"),
-        "OrderUserid": id,
-        "OrderUser": 0,
-        "OrderItems":[]
-    }
-    for (let i; i < cart.length; i++) {
-        OrderItem = {
+        const order = {
             "Id": 0,
-            "OrderId":0,
-            "ProductId": cart[i].id,
-            "Amount": 1
+            "OrderDate": new Date(),
+            "OrderSum": sessionStorage.getItem("totalPrice"),
+            "OrderUserid": id,
+            "OrderUser": 0,
+            "OrderItems": []
         }
-        order.orderItems.push(OrderItem);
-        console.log(order.orderItems[0].Amount)
+        for (let i; i < cart.length; i++) {
+            OrderItem = {
+                "Id": 0,
+                "OrderId": 0,
+                "ProductId": cart[i].id,
+                "Amount": 1
+            }
+            order.orderItems.push(OrderItem);
+            console.log(order.orderItems[0].Amount)
+        }
+        const Order = await fetch(`https://localhost:44387/api/Order`, {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            method: 'POST',
+            body: JSON.stringify(order)
+        })
+        const res = Order.json();
+        alert("הזמנתך נקלטה במערכת ,תודה על קניתך נשמח לראותך שוב!")
     }
-    const Order = await fetch(`https://localhost:44387/api/Order`, {
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    method: 'POST',
-        body: JSON.stringify(order)
-    })
-    const res = Order.json();
-    alert("הזמנתך נקלטה במערכת ,תודה על קניתך נשמח לראותך שוב!")
 }
