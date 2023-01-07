@@ -12,11 +12,13 @@ namespace FirstProject.Controllers
     [ApiController]
     public class userController : ControllerBase
     {
+        ILogger<User> _Logger;
         private readonly IUserService _IUserService;
-        public userController(IUserService IUserService)
+        public userController(IUserService IUserService,ILogger <User>logger)
         {
 
             _IUserService = IUserService;
+            _Logger = logger;
         }
         // GET: api/<ValuesController>
         [HttpGet]
@@ -41,13 +43,18 @@ namespace FirstProject.Controllers
         [HttpPost]
        async public Task<ActionResult<User> >Post([FromBody] User user)
         {
+            try {
             if (await _IUserService.Post(user) != null)
             {
                 return user;
             }
+                _Logger.LogInformation("user" + user.User1 + "triead login");
+             }
+            catch(Exception e)
+            {
+                _Logger.LogError("error happend!!!!",e.Message,e.StackTrace);
+            }
             return StatusCode(204);
-
-
         }
 
         // PUT api/<ValuesController>/5

@@ -1,8 +1,9 @@
 ﻿
 window.addEventListener("load", async (event) => {
-    let product = sessionStorage.getItem('cart')
+   let product = sessionStorage.getItem('cart')
     const tmp = JSON.parse(product);
     if (tmp != null) {
+       /* let tmp = sessionStorage.setItem('cart', JSON.stringify(cart))*/
         document.getElementById("ItemsCountText").innerText = tmp.length;
     }
     GetProduct();
@@ -33,12 +34,16 @@ function drawProduct(product) {
 
     document.body.appendChild(clon);    
 }
-
-const cart =[];
+ tempcart = [];
+ cart =[];
 var totalPrice = 0;
 console.log(totalPrice);
 function addToCart(product) {
-
+    tempcart = sessionStorage.getItem('cart');
+    var temp = JSON.parse(tempcart);
+    if (temp != null) {
+        cart = temp;
+    }
     cart.push(product);
     totalPrice = totalPrice + product.price;
     sessionStorage.setItem("cart", JSON.stringify(cart));
