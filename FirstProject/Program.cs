@@ -5,10 +5,10 @@ using Service;
 using T_Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-//var school = builder.Configuration.GetConnectionString("school");
-var Home = builder.Configuration.GetConnectionString("Home");
+var school = builder.Configuration.GetConnectionString("school");
+//var Home = builder.Configuration.GetConnectionString("Home");
 // Add services to the container.
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IOrder_service, Order_service>();
@@ -19,7 +19,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer(Home));
+builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer(school));
 //builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer("Server=DESKTOP-LLM33R2;Database=Products;Trusted_Connection=True;"));
 builder.Host.UseNLog();
 builder.Services.AddControllers();

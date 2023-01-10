@@ -52,7 +52,7 @@ namespace FirstProject.Controllers
              }
             catch(Exception e)
             {
-                _Logger.LogError("error happend!!!!",e.Message,e.StackTrace);
+                _Logger.LogError("error happend!!!!",e.Message);
             }
             return StatusCode(204);
         }

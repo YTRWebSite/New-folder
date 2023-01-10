@@ -3,7 +3,6 @@ window.addEventListener("load", async (event) => {
    let product = sessionStorage.getItem('cart')
     const tmp = JSON.parse(product);
     if (tmp != null) {
-       /* let tmp = sessionStorage.setItem('cart', JSON.stringify(cart))*/
         document.getElementById("ItemsCountText").innerText = tmp.length;
     }
     GetProduct();
@@ -27,6 +26,7 @@ function drawProduct(product) {
     var tmp = document.getElementById("temp-card");
     var clon = tmp.content.cloneNode(true);
     clon.querySelector("h1").innerText = product.name;
+    //clon.querySelector(".cat").innerText = product.CategoryName;
     clon.querySelector(".price").innerText = price;
     clon.querySelector("button").addEventListener("click", () => addToCart(product));
     clon.querySelector(".description").innerText = product.descreption;
@@ -48,7 +48,6 @@ function addToCart(product) {
     totalPrice = totalPrice + product.price;
     sessionStorage.setItem("cart", JSON.stringify(cart));
     sessionStorage.setItem("totalPrice", JSON.stringify(totalPrice));
-
     document.getElementById("ItemsCountText").innerText = cart.length;
     clon.querySelector("button").addEventListener("click", () => addToCart(product));
 }

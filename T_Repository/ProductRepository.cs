@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace T_Repository
                    && ((price_to == null) ? (true) : (product.Price <= price_to))
 
                  && (categoryIds.Length == 0) ? (true) : (categoryIds.Contains(product.CategoryId))
-                  && ((price_to == null) ? (true) : (product.Price <= price_to))).OrderBy(product => orderBy);
+                  && ((price_to == null) ? (true) : (product.Price <= price_to))).OrderBy(product => orderBy).Include(p=>p.Category);
                 Console.WriteLine(query);
 
                 List<Product> products = query.ToList();

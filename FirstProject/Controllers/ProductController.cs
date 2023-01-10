@@ -1,7 +1,11 @@
 ﻿using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Service;
+using DTO;
+
 using T_Repository;
+using AutoMapper;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,20 +16,26 @@ namespace FirstProject.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _iProductService;
+        private readonly IMapper _iMapper;
 
-        public ProductController(IProductService iProductService)
+        public ProductController(IProductService iProductService, IMapper iMapper)
+
         {
+            _iMapper = iMapper;
             _iProductService = iProductService;
         }
         // GET: api/<ProductController>
         [Route("get")]
         [HttpGet]
-        public async Task<Product[]> Get([FromQuery] string? name, [FromQuery] int? price_from, [FromQuery] int? price_to, [FromQuery] int?[] categoryIds, [FromQuery] int start, [FromQuery] int limit, [FromQuery] string? direction = "ASC", string? orderBy = "price")
+        public async Task<ProductDto[]> Get([FromQuery] string? name, [FromQuery] int? price_from, [FromQuery] int? price_to, [FromQuery] int?[] categoryIds, [FromQuery] int start, [FromQuery] int limit, [FromQuery] string? direction = "ASC", string? orderBy = "price")
         
         {
 
             Product [] product = await _iProductService.GetProduct(name, price_from, price_to, categoryIds, start, limit, direction, orderBy);
-            return product;
+         
+            ProductDto [] productDto= _iMapper.Map<Product[], ProductDto[]>(product);
+                
+            return productDto;
         }
 
        
