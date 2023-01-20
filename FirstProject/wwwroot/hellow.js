@@ -1,14 +1,18 @@
-﻿update = () => {
-    valuOfInput();
-    let userobject = sessionStorage.getItem('details')
-    const tmp = JSON.parse(userobject);
-    const real = tmp["firstName"];
-    document.getElementById("hello").innerHTML = `hello ${real}!!!!!!!!!`;
-    document.getElementById("details").style.display = "block"
-}
-get = () => {
-   
-}
+﻿//update = () => {
+//    valuOfInput();
+//    let userobject = sessionStorage.getItem('details')
+//    const tmp = JSON.parse(userobject);
+//    const real = tmp["firstName"];
+//    document.getElementById("hello").innerHTML = `hello ${real}!!!!!!!!!`;
+//    document.getElementById("details").style.display = "block"
+//}
+const update = () => {
+    const userObject = JSON.parse(sessionStorage.getItem('details'));
+    const name = userObject.firstName;
+    document.getElementById("hello").innerHTML = `hello ${name}!!!!!!!!!`;
+    document.getElementById("details").style.display = "block";
+};
+
 async function ok() {
     let userobject = sessionStorage.getItem('details')
     const tmp = JSON.parse(userobject);
@@ -19,7 +23,7 @@ async function ok() {
     ////const real = tmp["firstName"];
     ////document.getElementById("firsrName").innerHTML = `hello ${real}!!!!!!!!!`;
     const updatuser = {
-        
+
      "User1": document.getElementById("user").value,
      "id": id,
      "password": document.getElementById("password").value,
@@ -33,7 +37,7 @@ async function ok() {
         method: 'PUT',
         body: JSON.stringify(updatuser)
     });
-    
+
     if (res.ok) {
         const r = await res.json()
         sessionStorage.setItem('details', JSON.stringify(r))
@@ -41,10 +45,42 @@ async function ok() {
         const tmp = JSON.parse(userobject);
         const firstName = tmp["firstName"];
         alert(firstName);
-     
+
     }
 
 }
+//const ok = async () => {
+//    try {
+//        let userobject = sessionStorage.getItem('details')
+//        const tmp = JSON.parse(userobject);
+//        const id = tmp["id"];
+//        alert(id);
+//        const updatuser = {
+//            "User1": document.getElementById("user").value,
+//            "id": id,
+//            "password": document.getElementById("password").value,
+//            "email": document.getElementById("email").value,
+//            "phone": document.getElementById("phone").value,
+//            "firstName": document.getElementById("firstName").value,
+//            "lastName": document.getElementById("lastName").value
+//        }
+//        const res = await fetch(`https://localhost:44387/api/user/${id}`, {
+//            headers: { "Content-Type": "application/json; charset=utf-8" },
+//            method: 'PUT',
+//            body: JSON.stringify(updatuser)
+//        });
+
+//        if (res.ok) {
+//            const { firstName } = await res.json();
+//            sessionStorage.setItem('details', JSON.stringify(firstName));
+//            let userobject = sessionStorage.getItem('details');
+//            alert(userobject);
+//        }
+//    }}
+      
+
+  
+
 valuOfInput = () =>
 {
     let userobject = sessionStorage.getItem('details')

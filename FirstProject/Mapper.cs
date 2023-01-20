@@ -10,7 +10,10 @@ namespace FirstProject
         {
             CreateMap<Product, ProductDto>().ForMember(dest=>dest.CategoryName, opt=>opt.MapFrom(
                 p=>p.Category.Name)).ReverseMap();
-          
+
+            CreateMap<OrderItem,OrderItemDTO>().ReverseMap();
+
+            CreateMap<Order, OrderDTO>().ReverseMap();
         }
     }
 }

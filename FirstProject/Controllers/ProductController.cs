@@ -30,7 +30,7 @@ namespace FirstProject.Controllers
         public async Task<ProductDto[]> Get([FromQuery] string? name, [FromQuery] int? price_from, [FromQuery] int? price_to, [FromQuery] int?[] categoryIds, [FromQuery] int start, [FromQuery] int limit, [FromQuery] string? direction = "ASC", string? orderBy = "price")
         
         {
-
+           
             Product [] product = await _iProductService.GetProduct(name, price_from, price_to, categoryIds, start, limit, direction, orderBy);
          
             ProductDto [] productDto= _iMapper.Map<Product[], ProductDto[]>(product);

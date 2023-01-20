@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="NewFolder\" />
     <Folder Include="wwwroot\NewFolder1\" />
     <Folder Include="wwwroot\NewFolder2\" />
   </ItemGroup>

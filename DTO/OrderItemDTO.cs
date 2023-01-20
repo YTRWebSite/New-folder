@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public partial class OrderItemDTO
-    { 
+    public  class OrderItemDTO
+    {
+        public OrderItemDTO()
+        {
+
+        }
         public int Id { get; set; }
         public int OrderId { get; set; }
         public int ProductId { get; set; }

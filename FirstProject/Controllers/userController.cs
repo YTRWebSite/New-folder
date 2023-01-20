@@ -43,7 +43,10 @@ namespace FirstProject.Controllers
         [HttpPost]
        async public Task<ActionResult<User> >Post([FromBody] User user)
         {
-            try {
+            _Logger.LogInformation("user" + user.User1 + "triead loginjjjjjjjjjjjjjjjjjjjjjjjj");
+
+            try
+            {
             if (await _IUserService.Post(user) != null)
             {
                 return user;

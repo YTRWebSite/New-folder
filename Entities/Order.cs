@@ -16,7 +16,7 @@ namespace Entities
         public int OrderSum { get; set; }
         public int OrderUserid { get; set; }
 
-        [JsonIgnore]
+       
         public virtual User? OrderUser { get; set; } = null!;
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }

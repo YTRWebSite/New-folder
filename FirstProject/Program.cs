@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using NLog.Web;
 using Service;
 using T_Repository;
+using FirstProject.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
-var school = builder.Configuration.GetConnectionString("school");
-//var Home = builder.Configuration.GetConnectionString("Home");
+//var school = builder.Configuration.GetConnectionString("school");
+var Home = builder.Configuration.GetConnectionString("Home");
 // Add services to the container.
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -17,9 +18,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer(school));
+
+
+builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer(Home));
 //builder.Services.AddDbContext<ProductsContext>(option => option.UseSqlServer("Server=DESKTOP-LLM33R2;Database=Products;Trusted_Connection=True;"));
 builder.Host.UseNLog();
 builder.Services.AddControllers();
@@ -29,6 +30,7 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
+//app.UseMiddleware();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
